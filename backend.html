@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend</title>
+    <style>
+        #navbar{
+            display: flex;
+            font-size: 20px;
+            height: 40px;
+            width: 50%;
+            margin: auto;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(6, 181, 250);
+        }
+        #investor_form{
+            margin-left: 290px;
+            margin-top: 50px;
+           
+        }
+
+
+        a{
+            color: rgb(5, 5, 5);
+            text-decoration: none;
+        }
+        a:hover{
+            color: white;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div> <a href="navbar.html">Navbar</a> </div>
+        <div> <a href="frontend.html">FronEnd</a> </div>
+    </div>
+
+   <form id="investor_form">
+       <input type="text" placeholder="Enter Image URL" id="imgurl">
+       <input type="text" placeholder="Enter Name " id="name">
+       <input type="text" placeholder="Enter Company Logo" id="logo">
+       <input type="text" placeholder="Enter Role" id="role">
+       <input type="submit">
+   </form>
+</body>
+</html>
+
+<script>
+    
+    document.querySelector("#investor_form").addEventListener("submit", formfunction)
+
+  
+   var investor_Arr=JSON.parse(localStorage.getItem("investors_data"))||[];
+    function formfunction(){
+        event.preventDefault()
+        
+        var investorsObj = {
+            investors_img: document.querySelector("#imgurl").value,
+            investors_name:document.querySelector("#name").value,
+            investors_logo:document.querySelector("#logo").value,
+            investors_role:document.querySelector("#role").value,
+        };
+       investor_Arr.push(investorsObj)
+    //    console.log(investor_Arr)
+
+       localStorage.setItem("investors_data", JSON.stringify(investor_Arr))
+
+       window.location.href = "frontend.html";
+    }
+
+</script>

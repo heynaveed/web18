@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontEnd</title>
+    <style>
+
+            #navbar{
+                display: flex;
+                height: 40px;
+                width: 50%;
+                background-color: rgb(116, 182, 107);
+                margin: auto;
+                justify-content: space-around;
+                font-size: 20px;
+                align-items: center;
+                font-family: 'Poppins', sans-serif;
+                    }
+
+            a{
+                color: black;
+                text-decoration: none;
+            }
+
+            a:hover{
+                color: white;
+            }
+
+            h1{
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 5000;
+            }
+
+            #h3{
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-size: 20px;  
+            }
+
+            #p{
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                margin-top: -15px;
+                color: gray;
+            }
+
+            #logo{
+                height: 60px;
+                width: 140px;
+                margin-left: 75px;
+                margin-top: -20px;
+            }
+
+            #investors{
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                grid-template-rows: auto;
+                gap: 20px;
+                margin-left: 15px;
+                width: 95%;
+                margin: auto;
+            }
+
+            #box{
+                box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                margin: auto;
+            }
+
+            #avatar{
+               border-top-left-radius: 10px;
+               border-top-right-radius: 10px;
+               box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            }
+
+            @media all and (min-width : 451px) and (max-width:751px){
+                #investors{
+                  
+                    grid-template-columns: repeat(2,1fr);
+                    grid-template-rows: auto;
+                }
+            }
+
+            @media all and (min-width: 100px) and (max-width: 450px){
+                #investors{
+    
+                    grid-template-columns: repeat(1,1fr);
+                    grid-template-rows: auto;
+                    
+                }
+            }
+
+               
+    </style>
+</head>
+<body>
+
+    <div id="navbar">
+        <div> <a href="navbar.html">NavBar</a> </div>
+        <div> <a href="backend.html">BackEnd</a> </div>
+
+    </div>
+    <h1>Strategic Investors</h1>
+    <div id="investors">
+
+    </div>
+</body>
+</html>
+
+<script>
+    
+    var investor_Arr = JSON.parse(localStorage.getItem("investors_data"));
+    console.log(investor_Arr)
+
+    
+        investor_Arr.forEach(function(elem){
+            
+        // document.querySelector("#investors").innerHTML = null;
+
+        var box = document.createElement("div")
+        box.setAttribute("id","box")
+
+        var investor_avatar = document.createElement("img");
+        investor_avatar.setAttribute("src",elem.investors_img)
+        investor_avatar.setAttribute("id","avatar")
+
+        var investor_name = document.createElement("h3");
+        investor_name.innerText = elem.investors_name
+        investor_name.setAttribute("id","h3");
+
+        var investor_position = document.createElement("p");
+        investor_position.innerText=elem.investors_role
+        investor_position.setAttribute("id","p")
+
+        var investor_comapany = document.createElement("img")
+        investor_comapany.setAttribute("src",elem.investors_logo)
+        investor_comapany.setAttribute("id","logo")
+        box.append(investor_avatar, investor_name, investor_position, investor_comapany);
+
+        document.querySelector("#investors").append(box)
+        
+
+    })
+</script>
