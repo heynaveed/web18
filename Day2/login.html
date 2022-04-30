@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin</title>
+
+    <style>
+         h3{
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+           
+        }
+          #form{
+            height: auto;
+            width: 300px;
+            margin: auto;
+            border-radius: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+            background-color: rgb(220, 221, 221);
+            
+        }
+        .formpage{
+            border: 1px solid gray;
+            height: 40px;
+            width: 250px;
+            margin-bottom: 20px;
+            margin-top: -30px;
+            border-radius: 10px;
+            margin-left: 20px;
+           
+        }
+        h5{
+            margin-left: 20px;
+            
+        }
+        #signins{
+            margin-left: 10%;
+            margin-bottom: 20px;
+            height: 35px;
+            width: 80%;
+            border: 1px solid gray;
+            border-radius: 10px;
+            background-color: rgb(194, 194, 194);
+        }
+        #signins:hover{
+            background-color: rgb(131, 131, 131);
+            color: rgb(255, 255, 255);
+        }
+        #login{
+            display: flex;
+            margin-left: 50px;
+            
+        }
+        #bag{
+            font-size: 14px;
+        }
+
+        #signin{
+            margin-top: 13px;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+        
+        
+        
+    </style>
+</head>
+<body>
+    <form id="form" >
+        <h3>Sign In</h3>
+        <h5>Email</h5>
+        <input class="formpage" type="text" placeholder="Enter Your Email" id="email">
+        <h5>Password</h5>
+        <input class="formpage" type="password" placeholder="Enter Password" id="password">
+        <br>
+        <input type="submit" value="Sign In" id="signins">
+
+        <div id="login">
+            <p id="bag">Dont have an account?</p>
+            <a id="signin" href="index.html">signup</a>
+        </div>
+    </form>
+</body>
+</html>
+
+<script>
+    document.querySelector("#form").addEventListener("submit",myformfunction)
+    var userdata_Arr = JSON.parse(localStorage.getItem("signup_data")) ||[];
+
+    function myformfunction(){
+        event.preventDefault();
+        var data = 
+        {
+            email: document.querySelector("#email").value ,
+            password: document.querySelector("#password").value
+        };
+
+        var logged_in_data = userdata_Arr.find(c => c.useremail == data.email && c.userpassword == data.password)
+        console.log(logged_in_data)
+        if(!logged_in_data)
+        {
+            alert("Wrong Credentials")
+            return;
+        }
+
+        else if(logged_in_data.useremail == data.email && logged_in_data.userpassword==data.password)
+        {
+            alert("Sign In Successfull")
+            console.log(logged_in_data)
+        }
+    };
+
+</script>
+

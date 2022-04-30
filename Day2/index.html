@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <style>
+       
+        #form{
+            height: auto;
+            width: 300px;
+            margin: auto;
+            border-radius: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+            background-color: rgb(220, 221, 221);
+            
+        }
+        h3{
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+           
+        }
+        h5{
+            margin-left: 20px;
+            
+        }
+        .frompage{
+            border: 1px solid gray;
+            height: 40px;
+            width: 250px;
+            margin-bottom: 20px;
+            margin-top: -30px;
+            border-radius: 10px;
+            margin-left: 20px;
+           
+        }
+        #signup{
+            margin-left: 10%;
+            margin-bottom: 20px;
+            height: 35px;
+            width: 80%;
+            border: 1px solid gray;
+            border-radius: 10px;
+            background-color: rgb(194, 194, 194);
+        }
+        #signup:hover{
+            background-color: rgb(131, 131, 131);
+            color: rgb(255, 255, 255);
+        }
+        #login{
+            display: flex;
+            margin-left: 50px;
+            
+        }
+        #bag{
+            font-size: 14px;
+        }
+        #signin{
+            margin-top: 13px;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    >
+    <form id="form">
+        <h3>Sign Up</h3>
+        <h5>Full name</h5>
+         <input class="frompage" type="text" placeholder="Enter Your Full Name" id="name">
+         <h5>Email</h5>
+        <input class="frompage" type="text" placeholder="Enter Email" id="email">
+        <h5>Password</h5>
+        <input class="frompage" type="password" placeholder="Enter Password" id="password">
+        <br>
+        <input type="submit" value="Sign Up" id="signup">
+        <div id="login">
+            <p id="bag">Already have an account?</p>
+            <a id="signin" href="login.html">signin</a>
+        </div>
+        
+    </form>
+</body>
+</html>
+
+<script>
+      document.querySelector("#form").addEventListener("submit",myform)
+     
+
+
+      function myform(){
+          event.preventDefault();
+
+          var user_datArr= JSON.parse(localStorage.getItem("login_data")) || [] ;
+
+         var data = {
+             username:document.querySelector("#name").value,
+             useremail:document.querySelector("#email").value,
+             userpassword:document.querySelector("#password").value,
+         };
+         user_datArr.push(data)
+         localStorage.setItem("signup_data",JSON.stringify(user_datArr))
+         
+
+      }
+
+</script>
